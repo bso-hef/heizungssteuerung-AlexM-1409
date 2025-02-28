@@ -1,4 +1,4 @@
-public class Raum {
+class Raum {
     private int raumId;
     private int zieltemperatur;
 

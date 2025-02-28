@@ -3,7 +3,9 @@ public class Fenster {
 
     private Raum raum;
 
-    public Fenster(Raum raum) {
+    public Fenster(Raum raum, boolean offen) {
+        this.raum = raum;
+        this.offen = offen;
     }
 
     public void offeneFenster() {
