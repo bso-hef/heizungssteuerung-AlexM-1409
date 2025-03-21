@@ -1,25 +1,25 @@
-public class Heizung {
-    private boolean eigenschaltet;
-
+class Heizung {
+    private boolean eingeschaltet;
     private Raum raum;
 
-    public Heizung(Raum raum){
+    public Heizung(Raum raum) {
+        this.raum = raum;
+        this.eingeschaltet = false;
     }
 
-    public void schalteEin(){
-        this.eigenschaltet = true;
+    public void schalteEin() {
+        this.eingeschaltet = true;
     }
 
-    public void schalteAus(){
-        this.eigenschaltet = false;
+    public void schalteAus() {
+        this.eingeschaltet = false;
     }
 
-    public boolean isEigenschaltet() {
-        return eigenschaltet;
+    public boolean isEingeschaltet() {
+        return eingeschaltet;
     }
 
-    public Raum getRaum(){
+    public Raum getRaum() {
         return raum;
     }
-
 }

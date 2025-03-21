@@ -4,17 +4,16 @@ import java.util.ArrayList;
 class Raum {
     private int raumId;
     private int zieltemperatur;
+    private List<Fenster> fensterListe;
+    private List<Heizung> heizungListe;
+    private Thermometer thermometer;
 
-    private List<Fenster> fensterListe = new ArrayList<>();
-
-    private List<Heizung> heizungListe = new ArrayList<>();
-
-    private Thermometer;
-
-
-    public Raum(int raumId, int zieltemperatur) {
+    public Raum(int raumId, int zieltemperatur, int startTemperatur) {
         this.raumId = raumId;
         this.zieltemperatur = zieltemperatur;
+        this.fensterListe = new ArrayList<>();
+        this.heizungListe = new ArrayList<>();
+        this.thermometer = new Thermometer(startTemperatur, 100, raumId);
     }
 
     public boolean hatOffeneFenster() {
@@ -26,10 +25,52 @@ class Raum {
         return false;
     }
 
-    public void regeleTemperatur(){
-        if
+    public void regeleTemperatur() {
+        if (hatOffeneFenster()) {
+            // Fenster offen -> alle Heizungen ausschalten
+            for (Heizung heizung : heizungListe) {
+                heizung.schalteAus();
+            }
+        } else {
+            // Fenster zu, Temperatur regeln
+            if (thermometer.getTemperatur() < zieltemperatur) {
+                for (Heizung heizung : heizungListe) {
+                    heizung.schalteEin();
+                }
+            } else {
+                for (Heizung heizung : heizungListe) {
+                    heizung.schalteAus();
+                }
+            }
+        }
     }
 
-    public List <Fenster> getFensterliste()
+    public List<Fenster> getFensterListe() {
+        return fensterListe;
+    }
 
+    public List<Heizung> getHeizungListe() {
+        return heizungListe;
+    }
+
+    public int getZieltemperatur() {
+        return zieltemperatur;
+    }
+
+    public void setZieltemperatur(int temperatur) {
+        this.zieltemperatur = temperatur;
+        regeleTemperatur();
+        }
+
+    public void addFenster(Fenster fenster) {
+        this.fensterListe.add(fenster);
+    }
+
+    public void addHeizung(Heizung heizung) {
+        this.heizungListe.add(heizung);
+    }
+
+    public String toString() {
+        return "Raum " + raumId + ": " + zieltemperatur + "°C. Fenster: " + fensterListe.size() + ". Heizungen: " + heizungListe.size();
+    }
 }

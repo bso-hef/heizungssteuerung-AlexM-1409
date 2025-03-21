@@ -1,19 +1,23 @@
-public class Fenster {
-    private boolean offen;
+import java.util.List;
+import java.util.ArrayList;
 
+class Fenster {
+    private boolean offen;
     private Raum raum;
 
-    public Fenster(Raum raum, boolean offen) {
+    public Fenster(Raum raum) {
         this.raum = raum;
-        this.offen = offen;
+        this.offen = false;
     }
 
-    public void offeneFenster() {
+    public void oeffneFenster() {
         this.offen = true;
+        raum.regeleTemperatur();
     }
 
     public void schliesseFenster() {
         this.offen = false;
+        raum.regeleTemperatur();
     }
 
     public boolean isOffen() {
@@ -23,5 +27,4 @@ public class Fenster {
     public Raum getRaum() {
         return raum;
     }
-
 }
