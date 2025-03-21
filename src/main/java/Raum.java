@@ -27,12 +27,12 @@ class Raum {
 
     public void regeleTemperatur() {
         if (hatOffeneFenster()) {
-            // Fenster offen -> alle Heizungen ausschalten
+
             for (Heizung heizung : heizungListe) {
                 heizung.schalteAus();
             }
         } else {
-            // Fenster zu, Temperatur regeln
+
             if (thermometer.getTemperatur() < zieltemperatur) {
                 for (Heizung heizung : heizungListe) {
                     heizung.schalteEin();
